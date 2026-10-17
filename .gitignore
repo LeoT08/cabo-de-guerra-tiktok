@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.log
+*.pid
+.env
+Scripts/server/data/*.json
+
+# Prints/fotos pessoais de referencia (contem contas, nomes de terceiros e dados do navegador)
+Cenarios e Personagens/*.png
+Cenarios e Personagens/*.jpg

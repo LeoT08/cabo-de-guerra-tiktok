@@ -1,0 +1,20 @@
+CENÁRIOS CABO DE GUERRA — imagens originais limpas
+
+01_Cenarios   Os 2 panoramas, sem a moldura escura e ampliados 2x.
+02_Elementos  Cada item recortado inteiro das pranchas, sem legenda, em fundo branco
+              (Congresso, ministérios, árvores, grades, público, telão, céu).
+              Pisos: cada um em duas versões, com margem branca e "_tile_sem_margem"
+              (só a textura, para repetir no jogo).
+03_Interface  Corda, corda com faixa, barras, timer, indicador de força, efeitos e poeira,
+              cada um em arquivo separado, sem legenda.
+Os antigos arquivos "_Recorte" e "_Agrupados" foram substituídos por esses itens separados.
+Ampliado 4x a partir de originais de baixa resolução.
+
+
+--- VERSÃO HD (refinada) ---
+- Todas as imagens com o DOBRO da resolução da versão anterior (ex.: 776x737 -> 1552x1474).
+- Reconstrução com IA (Real-ESRGAN general-x4v3, denoise 0.3): bordas nítidas, menos borrão
+  e menos artefato de compressão, preservando textura (cabelo, barba, tecido).
+- Fundo branco mantido 100% puro (#FFFFFF).
+- Proporções e alinhamento preservados (quadros "puxando" e expressões continuam do mesmo tamanho entre si).
+- Texturas "_tile_sem_margem": emenda horizontal corrigida para repetir sem costura.

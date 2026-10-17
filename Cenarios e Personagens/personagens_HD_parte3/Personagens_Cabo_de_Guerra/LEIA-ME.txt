@@ -1,0 +1,23 @@
+PERSONAGENS CABO DE GUERRA — imagens originais limpas
+
+O que foi feito (sem redesenhar nada):
+- As tiras originais foram remontadas na ordem certa (os recortes antigos cortavam
+  cabeças e pernas no meio) e cada figura foi recortada inteira.
+- Fundo xadrez falso trocado por branco; pedaços de figuras vizinhas removidos.
+- Margem branca em volta de tudo. Ampliado 4x (a resolução original é baixa,
+  então a ampliação não adiciona detalhe).
+- Os 4 quadros "puxando" têm o mesmo tamanho e os pés na mesma linha (prontos para animar).
+- As 6 expressões de cada personagem também têm tamanho igual entre si.
+
+Problemas que já vieram nas pranchas originais (não dá para corrigir só limpando):
+- Haddad/vista_04 (costas) mostra outra pessoa, de cabelo grisalho.
+- Michelle_Bolsonaro/vista_03 (perfil) mostra um homem de terno azul.
+
+
+--- VERSÃO HD (refinada) ---
+- Todas as imagens com o DOBRO da resolução da versão anterior (ex.: 776x737 -> 1552x1474).
+- Reconstrução com IA (Real-ESRGAN general-x4v3, denoise 0.3): bordas nítidas, menos borrão
+  e menos artefato de compressão, preservando textura (cabelo, barba, tecido).
+- Fundo branco mantido 100% puro (#FFFFFF).
+- Proporções e alinhamento preservados (quadros "puxando" e expressões continuam do mesmo tamanho entre si).
+- Texturas "_tile_sem_margem": emenda horizontal corrigida para repetir sem costura.

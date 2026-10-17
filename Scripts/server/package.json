@@ -1,0 +1,28 @@
+{
+  "name": "cabo-de-guerra-server",
+  "version": "1.0.0",
+  "description": "Servidor autoritativo do jogo Cabo de Guerra Presidencial: fisica, rounds, eventos, painel admin e ponte TikTok LIVE opcional.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "probe": "tsx scripts/probeTiktok.ts",
+    "simulate": "tsx scripts/simulateTiktok.ts"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "optionalDependencies": {
+    "tiktok-live-connector": "^2.0.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.0",
+    "@types/ws": "^8.5.12",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.1"
+  }
+}
