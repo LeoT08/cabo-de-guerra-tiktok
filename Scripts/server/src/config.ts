@@ -81,6 +81,18 @@ export const DEFAULT_CONFIG: GameConfig = {
       superForceSeconds: 0,
       superForceMultiplier: 1,
       particles: true
+    },
+    {
+      // ID da Rosa branca nao confirmado: casa pelo nome que o TikTok envia.
+      giftId: "",
+      giftName: "White Rose",
+      label: "Rosa branca",
+      icon: "rosa_branca",
+      team: "VERMELHO",
+      impulse: 5,
+      superForceSeconds: 0,
+      superForceMultiplier: 1,
+      particles: true
     }
   ],
   teamNames: {

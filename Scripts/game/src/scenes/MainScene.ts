@@ -41,11 +41,17 @@ const SLOT_OFFSETS = [118, 196, 266];
 const ROPE_RANGE_PX = 120;
 
 // Barra de forca, quadro de legenda e lista de eventos.
-// Nome de cada lado na legenda de presentes ("PUXA LULA").
-const LEGEND_TEAM_NAME: Record<Team, string> = { AZUL: "BOLSONARO", VERMELHO: "LULA" };
+// Nome de cada lado na legenda de presentes ("PUXA AZUL"). So a cor do time:
+// nome de politico/partido na tela causava restricao na LIVE.
+const LEGEND_TEAM_NAME: Record<Team, string> = { AZUL: "AZUL", VERMELHO: "VERMELHO" };
 
 // Fotos dos presentes na legenda (public/assets/gifts).
 const SHOW_GIFT_ICONS = true;
+// Icone do presente nao fica fixo: aparece numa piscada e some, com intervalo
+// sorteado a cada vez e independente por figurinha (os dois lados nunca sincronizam).
+const GIFT_BLINK_GAP_MS = { min: 1200, max: 4500 };
+const GIFT_BLINK_SHOW_MS = { min: 350, max: 900 };
+const GIFT_BLINK_FADE_MS = 120;
 
 const BAR_Y = 960;
 const LEGEND_Y = 158;
@@ -209,18 +215,6 @@ export class MainScene extends Phaser.Scene {
         fontFamily: "Arial Black, sans-serif",
         fontSize: "30px",
         color: "#ffffff"
-      })
-      .setOrigin(0.5);
-
-    // Aviso fixo e bem visivel: exigido pelas diretrizes da plataforma para conteudo com figuras politicas.
-    this.add.rectangle(CENTER_X, 104, WIDTH - 24, 92, 0xffd166).setStrokeStyle(4, 0x000000);
-    this.add
-      .text(CENTER_X, 104, "⚠ JOGO FICTÍCIO · SÓ ENTRETENIMENTO ⚠\nNÃO É PESQUISA ELEITORAL\nNão representa intenção de voto nem opinião de ninguém", {
-        fontFamily: "Arial Black, sans-serif",
-        fontSize: "21px",
-        color: "#111111",
-        align: "center",
-        lineSpacing: 2
       })
       .setOrigin(0.5);
 
@@ -460,6 +454,8 @@ export class MainScene extends Phaser.Scene {
       const img = this.add.image(x, iconY, `gift_${icon}`);
       img.setScale((iconSize - 8) / Math.max(img.width, img.height));
       img.preFX?.addGlow(0xffffff, 3, 0, false, 0.1, 10);
+      img.setAlpha(0);
+      this.scheduleGiftBlink(img);
       objects.push(img);
     } else {
       objects.push(
@@ -500,6 +496,24 @@ export class MainScene extends Phaser.Scene {
     label.setRotation(tilt);
     objects.push(badge, label);
     return { objects, bottom: badgeY + badgeH / 2 + 6 };
+  }
+
+  /** Uma piscada do icone apos um intervalo aleatorio; reagenda a proxima ate a legenda ser refeita. */
+  private scheduleGiftBlink(img: Phaser.GameObjects.Image) {
+    const gap = Phaser.Math.Between(GIFT_BLINK_GAP_MS.min, GIFT_BLINK_GAP_MS.max);
+    this.time.delayedCall(gap, () => {
+      if (!img.active) return; // legenda refeita: figurinha antiga destruida
+      this.tweens.add({
+        targets: img,
+        alpha: 1,
+        duration: GIFT_BLINK_FADE_MS,
+        yoyo: true,
+        hold: Phaser.Math.Between(GIFT_BLINK_SHOW_MS.min, GIFT_BLINK_SHOW_MS.max),
+        onComplete: () => {
+          if (img.active) this.scheduleGiftBlink(img);
+        }
+      });
+    });
   }
 
   private handleOverlay(message: OverlayMessage) {
